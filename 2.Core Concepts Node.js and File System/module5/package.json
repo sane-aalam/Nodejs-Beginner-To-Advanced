@@ -1,0 +1,20 @@
+{
+  "name": "module5",
+  "version": "1.0.0",
+  "description": "Modules & FileSystem",
+  "keywords": [
+    "javascript",
+    "node.js"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "Nodejs-Beginner-To-Advanced"
+  },
+  "license": "ISC",
+  "author": "sane-aalam",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  }
+}
