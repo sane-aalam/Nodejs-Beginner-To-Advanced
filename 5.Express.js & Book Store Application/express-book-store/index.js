@@ -22,13 +22,13 @@ const bookStore = [
 
 // setup get route to print Hello world!
 app.get("/", (req, res) => {
-  res.send("Hello world!");
+  res.send("Book Store - REST-FULL API!");
 });
 
 // setup get route to fetech all books
 app.get("/books", (req, res) => {
   // custom header start with
-  res.setHeader("x-piysuh", "Piyush garg");
+  //   res.setHeader("x-piysuh", "Piyush garg");
   res.status(200).json(bookStore);
 });
 
@@ -50,8 +50,7 @@ app.get("/book/:id", (req, res) => {
   res.json(book);
 });
 
-// 6.Setup DELETE Route — Remove Book by ID
-// 7.Setup POST Route — Add New Book
+// Setup POST Route — Add New Book
 app.post("/addNewBook", (req, res) => {
   const { tittle, author } = req.body;
 
@@ -105,11 +104,39 @@ app.post("/addNewBook", (req, res) => {
   });
 });
 
+// Setup DELETE Route — Remove Book by ID
+app.delete("/deleteBook/:id", (req, res) => {
+  const id = req.params.id;
+  const bookId = parseInt(id);
+
+  if (isNaN(bookId)) {
+    return res.status(400).json({ error: "Book ID must be a valid number" });
+  }
+
+  const bookIndex = bookStore.findIndex((book) => book.id === bookId);
+
+  // if not found book into mockData
+  if (!bookIndex) {
+    return res
+      .status(404)
+      .json({ error: `book with id ${id} does not exists!` });
+  }
+
+  // remove the book
+  const deletedBook = bookStore.splice(bookIndex, 1);
+
+  res.json({
+    massage: "successefully deleted book!",
+    deletedBook: deletedBook,
+    deleteId: bookIndex,
+  });
+});
+
 // app.listen
 try {
   app.listen(PORT, () => {
-    console.log(`✅ HTTP server is running on http://localhost:${PORT}`);
+    console.log(`HTTP server is running on http://localhost:${PORT}`);
   });
 } catch (err) {
-  console.error("❌ Failed to start server:", err);
+  console.error("Failed to start server:", err);
 }
