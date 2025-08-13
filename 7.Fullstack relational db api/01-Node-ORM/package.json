@@ -1,0 +1,26 @@
+{
+  "name": "01-node-orm",
+  "version": "1.0.0",
+  "description": "fullstack relation-db-api",
+  "keywords": [
+    "javascript",
+    "postgreSQL"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "nodejs-beginner-to-adv"
+  },
+  "license": "ISC",
+  "author": "sane-aalam",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.1",
+    "drizzle-kit": "^0.31.4",
+    "drizzle-orm": "^0.44.4",
+    "pg": "^8.16.3"
+  }
+}
