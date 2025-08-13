@@ -1,5 +1,5 @@
 // drizzle.config.js
-require("dotenv").config();
+require("dotenv/config");
 const { defineConfig } = require("drizzle-kit");
 
 const config = defineConfig({
