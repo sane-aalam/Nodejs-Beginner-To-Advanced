@@ -1,0 +1,25 @@
+{
+  "name": "02-bookstore",
+  "version": "1.0.0",
+  "description": "this is zizzle",
+  "keywords": [
+    "javascript"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "sane"
+  },
+  "license": "ISC",
+  "author": "sane-aalam",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.1",
+    "drizzle-kit": "^0.31.4",
+    "drizzle-orm": "^0.44.4",
+    "pg": "^8.16.3"
+  }
+}
