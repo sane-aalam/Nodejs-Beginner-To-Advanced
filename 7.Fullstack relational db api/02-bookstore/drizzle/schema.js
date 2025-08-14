@@ -1,10 +1,4 @@
-import { integer, pgTable, varchar } from "drizzle-orm/pg-core";
+import bookStore from "./book.model.js";
+import authorTable from "./author.model.js";
 
-const usersTable = pgTable("users", {
-  id: integer().primaryKey().generatedAlwaysAsIdentity(),
-  name: varchar({ length: 255 }).notNull(),
-  age: integer().notNull(),
-  email: varchar({ length: 255 }).notNull().unique(),
-});
-
-export default usersTable;
+export default { bookStore, authorTable };

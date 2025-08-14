@@ -1,24 +1,17 @@
-import db from "./config/db.js";
-import usersTable from "./drizzle/schema.js";
+import express, { json, urlencoded } from "express";
+import router from "./routes/book.routes.js";
+const app = express();
+const PORT = 8000;
 
-async function getAllUsers() {
-  const user = await db.select().from(usersTable);
-  return user;
+app.use(json());
+app.use(urlencoded({ extended: true }));
+
+app.use("/api/books", router);
+
+try {
+  app.listen(PORT, () => {
+    console.log(`HTTP server is running on http://localhost:${PORT}`);
+  });
+} catch (err) {
+  console.error("Failed to start server:", err);
 }
-
-// Function to add a single user to the database
-async function addUser(userData) {
-  const { name, age, email } = userData;
-  const newUser = await db.insert(usersTable).values({ name, age, email });
-
-  console.log(newUser);
-  return newUser;
-}
-
-const userData = {
-  name: "John Doe",
-  age: 30,
-  email: "john.doe@example.com",
-};
-
-addUser(userData);
