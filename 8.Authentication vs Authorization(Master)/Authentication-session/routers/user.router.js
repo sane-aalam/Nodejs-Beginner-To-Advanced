@@ -1,9 +1,10 @@
 import express from "express";
 const router = express.Router();
 import db from "../db/index.js";
-import { usersTable } from "../db/schema.js";
+import { userSessions, usersTable } from "../db/schema.js";
 import { eq } from "drizzle-orm";
 import { randomBytes, createHmac } from "node:crypto";
+import crypto from "crypto";
 
 router.post("/signup", async (req, res) => {
   try {
@@ -53,9 +54,10 @@ router.post("/signup", async (req, res) => {
 router.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
-
+    console.log("debug-1");
     const [existingUser] = await db
       .select({
+        id: usersTable.id,
         email: usersTable.email,
         salt: usersTable.salt,
         password: usersTable.password,
@@ -82,10 +84,26 @@ router.post("/login", async (req, res) => {
         error: `incorrect password!`,
       });
     }
+
+    console.log("debug-2");
     // generate the session for user
+    // each user have unique sesssion
+    console.log(existingUser.id);
+    const session = await db
+      .insert(userSessions)
+      .values({
+        userId: existingUser.id,
+      })
+      .returning({
+        id: userSessions.id,
+        createdAt: userSessions.createdAt,
+      });
+
+    console.log("debug-3");
+    console.log("Session created:", session);
     return res.json({ status: true, msg: `succesfully login` });
   } catch (error) {
-    console.error("Signup error:", err);
+    console.error("Signup error:", error);
     return res.status(500).json({ error: "Internal Server Error" });
   }
 });
