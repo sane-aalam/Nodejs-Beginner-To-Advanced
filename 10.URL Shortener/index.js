@@ -1,11 +1,13 @@
 import express from "express";
-
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
-app.get("/", (req, res) => {
-  res.send("Hello, Express with pnpm!");
-});
+// Middleware to parse JSON request body
+app.use(express.json());
+
+// import all routers
+import router from "./routers/user.router.js";
+app.use("/user", router);
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
