@@ -1,0 +1,25 @@
+{
+  "name": "master-rest-apis",
+  "version": "1.0.0",
+  "description": "this is bluiding rest-apis",
+  "keywords": [
+    "javascript",
+    "node"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "Nodejs-beginner-to-advanced"
+  },
+  "license": "ISC",
+  "author": "sane-aalam",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.1",
+    "express": "^5.1.0",
+    "mongoose": "^8.17.2"
+  }
+}
