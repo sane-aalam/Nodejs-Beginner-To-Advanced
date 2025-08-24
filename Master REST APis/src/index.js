@@ -5,12 +5,13 @@ import ErrorHander from "../Middlewares/ErrorHandler.js";
 // global Error handling
 app.use(ErrorHander);
 
-app.get("/", (req, res) => {
-  throw new Error("Manual error!");
-});
+// import all routers here
+// flow you understand : server.js > index.js > router.js > controller.js
+import userRouter from "../Routes/User/user.router.js";
+app.use("/api", userRouter);
 
-app.get("/test", (req, res) => {
-  throw new Error("Tested error!");
+app.get("/", (req, res) => {
+  res.send("Hello'world!");
 });
 
 export default app;
