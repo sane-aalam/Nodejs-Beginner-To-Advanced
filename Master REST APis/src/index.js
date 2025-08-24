@@ -1,8 +1,8 @@
 import express from "express";
 const app = express();
 
-app.get("/login", (req, res) => {
-  console.log("login route hit!");
+app.get("/", (req, res) => {
+  res.send("Let's countinue to bluid rest-apis");
 });
 
 export default app;
